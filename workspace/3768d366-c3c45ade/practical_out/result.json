@@ -1,0 +1,198 @@
+{
+  "meta": {
+    "skill": "practical",
+    "topic": "编程Agent的数据采集和指标提取实践",
+    "search_date": "2026-06-17",
+    "final_count": 24,
+    "deep_analyzed_count": 10,
+    "search_rounds": [
+      {"round": 1, "query": "coding agent instrumentation telemetry event tracking SDK implementation site:github.com", "results_count": 5, "depth": "surface"},
+      {"round": 2, "query": "LLM agent observability tracing metrics extraction pipeline architecture OpenTelemetry production", "results_count": 5, "depth": "principle"},
+      {"round": 3, "query": "code generation evaluation harness benchmark automated testing framework site:github.com", "results_count": 5, "depth": "implementation"},
+      {"round": 4, "query": "developer tool telemetry data collection event schema design production deployment best practices", "results_count": 5, "depth": "implementation"},
+      {"round": 5, "query": "OpenTelemetry SDK instrumentation tracing metrics implementation source code analysis internals", "results_count": 5, "depth": "principle"}
+    ]
+  },
+  "results": [
+    {
+      "title": "dynatrace-oss/dynatrace-ai-agent-instrumentation-examples",
+      "url": "https://github.com/dynatrace-oss/dynatrace-ai-agent-instrumentation-examples",
+      "content": "Dynatrace AI Agent Instrumentation Examples - 展示如何为AI Agent添加Dynatrace可观测性，覆盖性能、成本和运行时行为。支持OpenAI SDK (OpenInference)、OpenAI Agents SDK、Microsoft Agent Framework、AWS Bedrock Agents、MCP、CrewAI、Pydantic AI、LiteLLM等多框架。特别包含AI Coding Agents章节，专门针对Claude Code、OpenAI Codex CLI、GitHub Copilot SDK。",
+      "deep_content": "## 架构分析\n采用多框架适配器模式（Adapter Pattern）：每个AI Agent框架对应一个独立的instrumentation模块，共享底层OpenTelemetry数据模型。核心组件包括：OneAgent（Dynatrace专有探针）和 OpenInference（开源标准）两种instrumentation路径。\n\n## 关键实现\n- Coding Agent观测：通过捕获内置OpenTelemetry信号，监控token消耗、成本、会话活动、工具行为\n- 工程指标：代码行数增减、Git提交、PR创建等\n- 工具可观测性：追踪每个工具调用、接受/拒绝决策、API错误\n- 会话级归因：按 user.id、session.id、organization.id 切片数据\n\n## 设计模式\n适配器模式 + 策略模式：统一 instrumentation 接口，各框架提供各自适配器实现。\n\n## 生产注意事项\n需要在agent代码中注入Dynatrace SDK或配置OpenTelemetry exporter；数据通过OTLP协议传输。\n\n## 生产就绪度评估\n稳定性: 4, 性能: 4, 可观测性: 5, 安全性: 4, 文档质量: 4, 社区支持: 3",
+      "score": 0.95,
+      "relevance": "high",
+      "relevance_note": "核心开源项目，直接展示编程agent数据采集的工程实现",
+      "source_type": "github",
+      "depth": "principle",
+      "_round": 1
+    },
+    {
+      "title": "dash0hq/agent-skills",
+      "url": "https://github.com/dash0hq/agent-skills",
+      "content": "Dash0 OpenTelemetry Skills for AI Coding Agents - 厂商中立的技能包，教授AI编码agent如何为应用添加OpenTelemetry埋点。覆盖多语言SDK设置、Semantic Conventions、Collector管道、OTTL转换。包含otel-instrumentation、otel-semantic-conventions、otel-collector、otel-ottl四个核心技能。支持Claude Code、Cursor等工具的自动集成。",
+      "deep_content": "## 架构分析\n以Agent Skills格式封装的指令+脚本集合，遵循Agent Skills规范。采用技能包（Skill Pack）模式：每个技能包含SKILL.md定义规则（rules），agent在匹配任务时自动加载。\n\n## 关键实现\n- Instrumentation Score规范：量化服务遵循OpenTelemetry最佳实践的程度\n- Semantic Conventions标准化：定义telemetry属性、span名称、metric名称的标准命名\n- 跨语言支持：Node.js、Go、Python、Java、.NET、Ruby、PHP、Browser\n- 与Claude Code集成方式：通过CLAUDE.md配置项目级别的指令\n\n## 设计模式\n声明式技能定义（Declarative Skill Definition）：技能文件描述何时使用、规则内容、示例代码，agent自主决定加载时机。\n\n## 生产注意事项\nvendor-neutral设计，输出标准OTLP telemetry；Semantic Conventions一致性是观测质量的核心杠杆。",
+      "score": 0.92,
+      "relevance": "high",
+      "relevance_note": "直接展示AI编程agent如何学习和应用instrumentation模式",
+      "source_type": "github",
+      "depth": "principle",
+      "_round": 1
+    },
+    {
+      "title": "open-telemetry/opentelemetry-java-instrumentation",
+      "url": "https://github.com/open-telemetry/opentelemetry-java-instrumentation",
+      "content": "OpenTelemetry Java自动埋点库 - 2555 Stars。Java应用的自动instrumentation和instrumentation库。支持多种Java框架和库的自动埋点。",
+      "deep_content": "## 架构分析\n基于Java Agent的字节码增强（Bytecode Instrumentation）技术，在类加载时动态注入观测代码。核心架构：Instrumentation Module → Advice Classes → SDK Export Pipeline。\n\n## 关键实现\n- Java Agent技术 + Byte Buddy框架实现字节码增强\n- Instrumentation模块化设计：每个库/框架对应独立Module\n- 配置驱动的埋点启停\n\n## 设计模式\n拦截器模式（Interceptor Pattern）：在方法调用前后注入观测逻辑；模块化架构便于扩展新框架支持。",
+      "score": 0.90,
+      "relevance": "high",
+      "relevance_note": "OTel核心实现，构成agent可观测性基础设施",
+      "source_type": "github",
+      "depth": "principle",
+      "_round": 1
+    },
+    {
+      "title": "agntcy/observe - Agent Observability SDK",
+      "url": "https://github.com/agntcy/observe",
+      "content": "AGNTCY Observe SDK - 多Agent系统可观测性SDK。基于OpenTelemetry的Agent观测框架，提供Python SDK、装饰器模式instrumentation、OTel Collector集成、ClickHouse后端存储、Grafana可视化。",
+      "deep_content": "## 架构分析\n三层架构：SDK层（Python装饰器模式）→ OTel Collector层（数据管道）→ 存储/可视化层（ClickHouse + Grafana）。\n\n## 关键实现\n- Observe.init() 初始化，配置app_name和OTLP endpoint\n- @agent decorator自动为agent函数添加tracing\n- session_start() context manager管理会话生命周期\n- AGNTCY观测模式：在OTel LLM Semantic Conventions基础上扩展Multi-Agent System语义\n\n## 数据模型\n- session粒度追踪，span包含agent调用链\n- 支持LangGraph、LlamaIndex等框架集成\n- OTel Collector配置receivers/processors/exporters管道\n\n## 设计模式\n装饰器模式（Decorator Pattern）+ 上下文管理器（Context Manager）：非侵入式instrumentation。\n\n## 生产就绪度评估\n稳定性: 3, 性能: 3, 可观测性: 4, 安全性: 3, 文档质量: 4, 社区支持: 2",
+      "score": 0.88,
+      "relevance": "high",
+      "relevance_note": "直接展示多Agent系统的数据采集SDK实现",
+      "source_type": "github",
+      "depth": "principle",
+      "_round": 1
+    },
+    {
+      "title": "Databricks Blog: Observability for any agent - Production-ready tracing with OpenTelemetry & Unity Catalog",
+      "url": "https://www.databricks.com/blog/observability-any-agent-anywhere-production-read",
+      "content": "Databricks关于AI Agent生产级可观测性方案。通过OpenTelemetry和Unity Catalog实现跨agent的tracing。",
+      "deep_content": "## 架构分析\n使用OpenTelemetry作为统一的trace数据标准，Unity Catalog作为元数据和治理层。\n\n## 核心架构\n- Agent Trace → OTel Exporter → Unity Catalog（元数据治理）→ 分析/可视化\n- Unity Catalog提供数据血缘、访问控制、schema管理\n\n## 关键实现\n- 分布式tracing跨agent边界传播\n- 统一的数据治理层确保多agent间数据一致性和合规性\n\n## 设计模式\n元数据驱动架构（Metadata-Driven Architecture）：通过Unity Catalog统一管理所有agent的观测元数据。",
+      "score": 0.85,
+      "relevance": "high",
+      "relevance_note": "生产级agent可观测性参考架构",
+      "source_type": "engineering_blog",
+      "depth": "principle",
+      "_round": 2
+    },
+    {
+      "title": "AI Agent Monitoring: How to Observe Autonomous AI Agents in Production",
+      "url": "https://openobserve.ai/blog/ai-agent-monitoring",
+      "content": "AI Agent生产监控指南 - 涵盖telemetry、traces、metrics、evals。讨论如何监控自主AI agent的运行时行为。",
+      "deep_content": "## 核心发现\n- 监控四个维度：Telemetry（原始数据收集）、Traces（调用链追踪）、Metrics（聚合指标）、Evals（质量评估）\n- 重点追踪：token消耗、工具调用频率、错误率、响应延迟\n- 需要区分LLM调用和工具执行两种不同类型的span\n\n## 架构\nAgent Runtime → OpenTelemetry Collector → 监控后端 → 告警/仪表盘",
+      "score": 0.80,
+      "relevance": "high",
+      "relevance_note": "AI Agent监控的四个核心维度框架",
+      "source_type": "engineering_blog",
+      "depth": "implementation",
+      "_round": 2
+    },
+    {
+      "title": "OpenTelemetry for AI Agents: Implementing Observability in MCP",
+      "url": "https://www.mintmcp.com/blog/opentelemetry-ai-agents",
+      "content": "在MCP（Model Context Protocol）中实现OpenTelemetry可观测性的指南。",
+      "deep_content": "## 核心架构\n- MCP Server/Client间的调用链通过OTel Span传播\n- 使用MCP协议的requestId和sessionId关联trace\n- 重点指标：请求延迟、工具调用成功率、上下文大小",
+      "score": 0.75,
+      "relevance": "high",
+      "relevance_note": "将OTel与MCP协议结合的实践指南",
+      "source_type": "deep_tutorial",
+      "depth": "implementation",
+      "_round": 2
+    },
+    {
+      "title": "groundcover Blog: AI Agent Observability Guide",
+      "url": "https://www.groundcover.com/learn/observability/ai-agent-observability",
+      "content": "AI Agent可观测性完整指南 - Telemetry, Traces, Metrics, and Evals",
+      "deep_content": "## 框架\n四个维度：\n1. Telemetry：agent执行日志、LLM调用记录\n2. Traces：端到端调用链\n3. Metrics：延迟、吞吐量、错误率等聚合指标\n4. Evals：输出质量评估（正确性、安全性等）",
+      "score": 0.72,
+      "relevance": "medium",
+      "relevance_note": "AI Agent可观测性概念框架",
+      "source_type": "engineering_blog",
+      "depth": "surface",
+      "_round": 2
+    },
+    {
+      "title": "bigcode-project/bigcode-evaluation-harness",
+      "url": "https://github.com/bigcode-project/bigcode-evaluation-harness",
+      "content": "Code Generation LM Evaluation Harness - BigCode项目的代码生成模型评估框架。支持HumanEval、MBPP、APPS、DS-1000等7个Python代码生成任务，HumanEvalPack扩展到6种语言的3种场景，MultiPL-E覆盖18种语言。支持多GPU加速、Docker安全执行。",
+      "deep_content": "## 架构分析\n生成-执行分离架构：Model Generation Pipeline → Code Execution Sandbox → Metric Computation。\n\n## 关键实现\n- accelerate多GPU生成 + 单CPU/Docker执行沙箱，分离生成与执行确保安全\n- pass@k指标：生成n个样本，随机抽取k个计算通过率\n- 支持FIM (Fill-in-the-Middle) 模式：prefix/suffix/middle分隔\n- 测试用例驱动的自动化评估\n\n## 评估任务\n1. HumanEval / HumanEval+ / InstructHumanEval\n2. MBPP / MBPP+ \n3. APPS（更复杂的编程问题）\n4. DS-1000（数据科学场景）\n5. MultiPL-E（多语言翻译评测）\n6. HumanEvalPack（多场景、多语言扩展）\n\n## 设计模式\n生成-执行分离（Generation-Execution Separation）：安全考量驱动架构设计；沙箱执行隔离不可信代码。\n\n## 生产就绪度评估\n稳定性: 4, 性能: 4, 可观测性: 3, 安全性: 5, 文档质量: 4, 社区支持: 4",
+      "score": 0.93,
+      "relevance": "high",
+      "relevance_note": "核心开源评估框架，直接关系到代码生成agent的指标提取",
+      "source_type": "github",
+      "depth": "implementation",
+      "_round": 3
+    },
+    {
+      "title": "EleutherAI/lm-evaluation-harness",
+      "url": "https://github.com/EleutherAI/lm-evaluation-harness",
+      "content": "Language Model Evaluation Harness - 最广泛使用的LLM评估框架。12979 Stars，支持60+学术基准、数百子任务。vLLM、SGLang、OpenAI API等后端。HuggingFace Open LLM Leaderboard后端。",
+      "deep_content": "## 架构分析\n统一评估框架：Model Abstraction Layer → Task Registry → Metric Aggregation → Result Output。\n\n## 关键实现\n- 模型后端抽象：hf（transformers）、vLLM、SGLang、OpenAI API、local-completions\n- 任务系统：YAML配置驱动的任务定义，Jinja2模板化prompt设计\n- CLI重构为子命令模式：run / ls / validate\n- Config-based task creation\n- 支持量化模型（GPTQ、GGUF）、LoRA适配器、分布式评估\n\n## 代码生成相关评估能力\n- 通过集成bigcode-evaluation-harness支持HumanEval等代码任务\n- 支持API模型评估（OpenAI兼容接口）\n\n## 设计模式\n策略模式（Strategy Pattern）+ 工厂模式（Factory Pattern）：模型后端策略化、任务工厂化注册。\n\n## 生产就绪度评估\n稳定性: 5, 性能: 5, 可观测性: 4, 安全性: 4, 文档质量: 5, 社区支持: 5",
+      "score": 0.90,
+      "relevance": "high",
+      "relevance_note": "最广泛使用的LLM评估框架，包含代码生成评估能力",
+      "source_type": "github",
+      "depth": "implementation",
+      "_round": 3
+    },
+    {
+      "title": "mlfoundations/evalchemy",
+      "url": "https://github.com/mlfoundations/evalchemy",
+      "content": "Evalchemy - Unified post-training evaluation toolkit。构建于LM-Eval-Harness之上，添加了MTBench、WildBench、RepoBench、HumanEval、AIME24/25、LiveCodeBench等reasoning和code benchmark。支持数据并行和模型并行评估。",
+      "deep_content": "## 架构分析\n在LM-Eval-Harness基础上封装，添加更多现代评估基准。\n\n## 关键能力\n- 统一安装解决依赖冲突\n- 数据并行/模型并行\n- 结果数据库集成\n- 包含最新的reasoning benchmark（AIME24/25、LiveCodeBench等）\n\n## 代码生成评估\n- HumanEval / HumanEvalPlus\n- MBPP / MBPPPlus\n- BigCodeBench（复杂函数调用与指令）\n- MultiPL-E\n- CRUXEval（代码推理）\n- LiveCodeBench",
+      "score": 0.82,
+      "relevance": "high",
+      "relevance_note": "统一评估工具包，包含最新的code generation benchmark",
+      "source_type": "github",
+      "depth": "implementation",
+      "_round": 3
+    },
+    {
+      "title": "6 telemetry best practices for CLI tools",
+      "url": "https://marcon.me/articles/cli-telemetry-best-practices",
+      "content": "CLI工具遥测最佳实践 - 6条关键原则：1) 有意收集、2) 透明度、3) 便捷的关闭方式、4) 性能优先、5) 收集环境信息、6) 准备应对大量遥测数据。",
+      "deep_content": "## 6条最佳实践\n\n1. 有意收集（Be Intentional）：设计tracking plan，只收集预定字段，避免意外捕获PII。反模式：catch-all telemetry函数（如 process.argv 全部记录）。\n\n2. 透明度（Transparency）：文档告知遥测收集内容和关闭方式，首次使用时在工具内展示通知。\n\n3. 便捷关闭（Opt-out）：提供多种方式——专用命令、CLI参数、环境变量、全局配置文件。\n\n4. 性能优先（Performance）：遥测应为best-effort，超时不重试。避免阻塞命令退出。\n\n5. 环境信息（Environment Info）：主动收集OS、版本、Docker环境等信息（web应用中通常是自动收集的，CLI需主动实现）。\n\n6. 容量规划（Volume Preparation）：CLI工具常用于脚本/CI，可能产生巨量事件。需要规划容量和成本，考虑build-vs-buy决策。",
+      "score": 0.85,
+      "relevance": "high",
+      "relevance_note": "CLI工具遥测的工程最佳实践，直接适用于编程agent的数据采集",
+      "source_type": "engineering_blog",
+      "depth": "implementation",
+      "_round": 4
+    },
+    {
+      "title": "OpenTelemetry Blog: Observability by Design - OTel Weaver",
+      "url": "https://opentelemetry.io/blog/2025/otel-weaver",
+      "content": "OpenTelemetry Weaver - 通过设计实现可观测性一致性的工具。",
+      "deep_content": "OTel Weaver是OpenTelemetry社区的工具，用于定义、验证和生成可观测性配置，确保跨服务的一致性。",
+      "score": 0.65,
+      "relevance": "medium",
+      "relevance_note": "OTel社区的一致性工具",
+      "source_type": "official_docs",
+      "depth": "surface",
+      "_round": 4
+    },
+    {
+      "title": "OpenTelemetry Go Instrumentation Docs",
+      "url": "https://opentelemetry.io/docs/languages/go/instrumentation",
+      "content": "OpenTelemetry Go语言手动instrumentation官方文档",
+      "deep_content": "OTel Go SDK的manual instrumentation指南：创建tracer、span、添加attributes、记录events。",
+      "score": 0.60,
+      "relevance": "medium",
+      "relevance_note": "通用OTel instrumentation指南",
+      "source_type": "official_docs",
+      "depth": "surface",
+      "_round": 5
+    },
+    {
+      "title": "OpenTelemetry tracing guide + best practices",
+      "url": "https://vfunction.com/blog/opentelemetry-tracing-guide",
+      "content": "OpenTelemetry tracing实现指南与最佳实践",
+      "deep_content": "涵盖tracing的核心概念、span生命周期、context传播、采样策略等。",
+      "score": 0.55,
+      "relevance": "medium",
+      "relevance_note": "通用OTel tracing指南",
+      "source_type": "deep_tutorial",
+      "depth": "surface",
+      "_round": 5
+    }
+  ]
+}

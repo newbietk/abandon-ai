@@ -1,0 +1,198 @@
+{
+  "meta": {
+    "skill": "industry",
+    "topic": "编程 Agent 数据采集与指标提取 — 行业深度研究",
+    "search_date": "2026-06-17",
+    "final_count": 15,
+    "deep_fetched_count": 8,
+    "search_rounds": [
+      {"round": 1, "query": "GitHub Copilot telemetry data pipeline architecture engineering metrics dashboard", "results_count": 5, "depth": "surface"},
+      {"round": 2, "query": "\"AI coding assistant\" product analytics user behavior tracking experimentation framework", "results_count": 5, "depth": "principle"},
+      {"round": 3, "query": "coding agent data governance compliance GDPR telemetry privacy engineering", "results_count": 5, "depth": "implementation"},
+      {"round": 4, "query": "\"code completion\" quality evaluation production deployment human rating automated metrics", "results_count": 5, "depth": "principle"},
+      {"round": 5, "query": "Cursor Copilot Codeium internal evaluation data flywheel collection system design", "results_count": 5, "depth": "surface"}
+    ]
+  },
+  "results": [
+    {
+      "title": "From metrics to impact: Turn GitHub Copilot data into business value",
+      "url": "https://www.youtube.com/watch?v=FWsAQpP6_kw&vl=en",
+      "content": "GitHub Universe 2025 session on Copilot Metrics dashboard demonstrating enterprise-level dashboard and API for usage and adoption metrics, including user-level downloadable reports. Covers 28-day detailed data for understanding usage patterns.",
+      "deep_content": "GitHub Copilot Metrics dashboard provides enterprise-level usage and adoption metrics, with API access for programmatic data retrieval. Key capabilities include: user-level downloadable reports, team-level aggregation, and integration with GitHub repo commit and PR insights for full engineering impact visibility.",
+      "score": 0.85,
+      "relevance": "high",
+      "relevance_note": "Official GitHub Universe session, direct coverage of Copilot metrics ecosystem",
+      "source_credibility": "high",
+      "depth": "principle",
+      "_round": 1
+    },
+    {
+      "title": "Metrics data properties for GitHub Copilot - GitHub Docs",
+      "url": "https://docs.github.com/en/copilot/reference/metrics-data",
+      "content": "Official GitHub documentation on Copilot metrics data fields, calculation methods, retention periods, and telemetry sources. Details client-side and server-side telemetry collection, 90-day rolling retention, and specific metric fields.",
+      "deep_content": "## Metrics Schema\n- report_time: UTC timestamp of report generation\n- login: GitHub username\n- last_authenticated_at: last authentication timestamp\n- last_activity_at: last Copilot interaction timestamp\n- last_surface_used: IDE name/version or GitHub.com feature name\n\n## Activity Calculation\nActivities counted: code suggestions in IDE, Copilot Chat in IDE, PR summary generation, GitHub.com Copilot Chat, mobile Copilot, CLI Copilot. Events come from both client- and server-side telemetry. Processing latency up to 24 hours.\n\n## Retention\nActivity and authentication data retained for rolling 90-day period. Users must have telemetry enabled in their IDE for activity to be reflected.",
+      "score": 0.95,
+      "relevance": "high",
+      "relevance_note": "Official GitHub documentation, authoritative source for Copilot metrics schema and telemetry architecture",
+      "source_credibility": "high",
+      "depth": "implementation",
+      "_round": 1
+    },
+    {
+      "title": "Visualize ROI of your GitHub Copilot Usage, How it works!",
+      "url": "https://devblogs.microsoft.com/all-things-azure/visualize-roi-of-your-github-copilot-usage-how-it-works",
+      "content": "Microsoft Azure blog post detailing the Copilot Usage Advanced Dashboard built with Elasticsearch and Grafana. Captures long-term usage data across multiple organizations, breaking free from the 28-day API limitation.",
+      "deep_content": "## Technical Architecture\n- Data Storage: Elasticsearch for persistent storage, breaking 28-day limit for years-long analysis\n- Data Structuring: Organization and Team fields for granular filtering and cross-organizational insights\n- Data Integrity: Unique hash key generation for each data point with automatic updates\n- Visualization: Grafana-based fully customizable dashboards with built-in alerting for proactive monitoring\n- Integration: Open architecture supporting third-party system integration and additional data sources\n\n## APIs Used\n- Copilot Usage API for multi-organization and multi-team metrics\n- Metrics cover: active users, acceptance rate trends, suggested vs retained code, language breakdown\n\n## Key Metrics\n- 55% faster task completion (GitHub published benchmark)\n- 88% code retention rates",
+      "score": 0.92,
+      "relevance": "high",
+      "relevance_note": "Microsoft official engineering blog, detailed technical implementation of Copilot telemetry pipeline",
+      "source_credibility": "high",
+      "depth": "implementation",
+      "_round": 1
+    },
+    {
+      "title": "GitHub Copilot",
+      "url": "https://docs.datadoghq.com/integrations/github-copilot",
+      "content": "Datadog integration for GitHub Copilot providing metrics including code_generation_activity_count, code_acceptance_activity_count, loc_suggested_to_add_sum, loc_suggested_to_delete_sum, loc_added_sum. Metrics broken down by programming language and model.",
+      "deep_content": "## Available Metrics (Datadog Integration)\n- github_copilot.usage.organizations.by_language_model.code_generation_activity_count: Distinct Copilot output events including comments and docstrings\n- github_copilot.usage.organizations.by_language_model.code_acceptance_activity_count: Suggestions or code blocks accepted\n- github_copilot.usage.organizations.by_language_model.loc_suggested_to_add_sum: Lines of code suggested (completions and chat, excludes agent edits)\n- github_copilot.usage.organizations.loc_added_sum: Lines actually added to editor (accepted completions and applied code blocks)\n- Metrics available at organization and enterprise level with language and model breakdowns",
+      "score": 0.88,
+      "relevance": "high",
+      "relevance_note": "Datadog official integration documentation, provides production-grade observability metrics mapping for Copilot",
+      "source_credibility": "high",
+      "depth": "implementation",
+      "_round": 1
+    },
+    {
+      "title": "GitHub Copilot Enterprise: A Guide to Spaces and the Usage Metrics API",
+      "url": "https://www.datacamp.com/tutorial/github-copilot-enterprise",
+      "content": "Tutorial covering Copilot Enterprise Spaces and Usage Metrics API. Provides guidance on building lightweight reporting pipelines combining usage telemetry with internal engineering metrics.",
+      "deep_content": "## Key Metrics for ROI\n- Active user growth\n- Acceptance rate trends\n- Suggested versus retained code\n- PR cycle time improvements\n- IDE engagement frequency\n\n## Published Benchmarks\n- 55% faster task completion\n- 88% code retention rates",
+      "score": 0.75,
+      "relevance": "medium",
+      "relevance_note": "Educational tutorial, useful aggregation of Copilot metrics concepts and ROI measurement approaches",
+      "source_credibility": "medium",
+      "depth": "surface",
+      "_round": 1
+    },
+    {
+      "title": "Governance for your AI Coding Assistant",
+      "url": "https://www.knostic.ai/blog/ai-coding-assistant-governance",
+      "content": "Knostic article on AI coding assistant governance covering access control policies, data handling requirements, and compliance considerations for enterprise AI coding tool deployment.",
+      "deep_content": "## Governance Framework\n- AI coding assistant governance requires three pillars:\n  1. Access Control: Who can use which AI coding tools and for what codebases\n  2. Data Handling: What code context is sent to AI models, how it's processed and stored\n  3. Compliance: Alignment with regulatory requirements and organizational policies\n\n## Key Challenges\n- Balancing developer productivity with data security\n- Managing multiple AI coding tools across the organization\n- Ensuring consistent governance across different IDE integrations\n- Tracking AI-generated code for compliance and audit purposes",
+      "score": 0.82,
+      "relevance": "high",
+      "relevance_note": "Knostic is a specialized AI governance platform, direct expertise in coding assistant governance",
+      "source_credibility": "medium",
+      "depth": "principle",
+      "_round": 2
+    },
+    {
+      "title": "11 Observability Platforms for AI Coding Assistants",
+      "url": "https://www.augmentcode.com/tools/11-observability-platforms-for-ai-coding-assistants",
+      "content": "Augment Code's analysis of observability platforms for AI coding assistants. Covers 11 platforms including AWS CloudWatch, Datadog, and specialized AI observability tools for monitoring model drift, prompt-response correlation, and token cost attribution.",
+      "deep_content": "## The AI Monitoring Gap\nTraditional APM tools miss three critical blind spots:\n1. Model drift detection: behavior variance occurs without version changes\n2. Prompt-response correlation: tracking across developer sessions and code generation quality\n3. Token cost attribution: consuming more resources than budgeted per repository\n\n## Platforms Covered\n1. AWS CloudWatch: GenAI Monitoring with AgentCore for agent fleet monitoring and automated performance correlation\n2. Datadog: AI integration with model monitoring\n3. InsightFinder: Statistical frameworks for multivariate analysis\n4. Other platforms: New Relic AI, Grafana, Prometheus, and specialized AI observability startups\n\n## Key Insight\nProduction AI coding assistants require statistical drift detection, prompt-response correlation tracking, and granular cost attribution that standard monitoring platforms weren't designed to provide.",
+      "score": 0.85,
+      "relevance": "high",
+      "relevance_note": "Augment Code is an AI coding tool company with direct insight into the observability needs of coding agents",
+      "source_credibility": "medium",
+      "depth": "principle",
+      "_round": 2
+    },
+    {
+      "title": "AI Coding Agent Governance Policies That Work",
+      "url": "https://www.knostic.ai/blog/ai-coding-agent-governance",
+      "content": "Knostic article on effective AI coding agent governance policies covering access control, data governance, compliance requirements, and organizational frameworks for managing AI coding tools.",
+      "deep_content": "## Effective Governance Policies\n- Coding agents need different governance than traditional AI coding assistants because they can take autonomous actions\n- Key policy areas: code access permissions, action authorization levels, data retention, audit logging\n- Organizations should implement tiered governance: basic (autocomplete only), standard (chat + suggestions), full (agentic workflows)\n- Each tier has different data handling and access control requirements\n\n## Implementation Recommendations\n- Start with a coding agent inventory: know which agents are in use\n- Classify code repositories by sensitivity\n- Map agent capabilities to repository sensitivity tiers\n- Implement continuous monitoring and policy adjustment",
+      "score": 0.80,
+      "relevance": "high",
+      "relevance_note": "Knostic is specialized in AI governance, provides actionable policy frameworks",
+      "source_credibility": "medium",
+      "depth": "principle",
+      "_round": 3
+    },
+    {
+      "title": "Engineering GDPR compliance in the age of agentic AI",
+      "url": "https://iapp.org/news/a/engineering-gdpr-compliance-in-the-age-of-agentic-ai",
+      "content": "IAPP article on engineering GDPR compliance for agentic AI systems. Covers technical measures, data protection approaches, compliance architecture for AI agents that operate autonomously.",
+      "deep_content": "## GDPR Challenges for Agentic AI\nAgentic AI systems present unique GDPR compliance challenges because they can:\n- Make autonomous decisions affecting data subjects\n- Process data across multiple jurisdictions without direct human oversight\n- Create new data through synthesis and inference\n- Operate in ways that are not fully predictable at design time\n\n## Technical Compliance Measures\n1. Data Protection by Design: Embed privacy controls into agent architecture from the start\n2. Purpose Limitation: Agents must be constrained to specific, documented purposes\n3. Data Minimization: Agents should collect and process only necessary data\n4. Transparency: Logging and explainability mechanisms for agent decisions\n5. Human Oversight: Mechanisms for human intervention in agent decision-making\n\n## Engineering Approaches\n- Local processing architectures to minimize data transfer\n- Differential privacy for aggregated analytics\n- Data classification and automated policy enforcement at the agent level",
+      "score": 0.88,
+      "relevance": "high",
+      "relevance_note": "IAPP is the leading global privacy professional association, highly authoritative on GDPR compliance",
+      "source_credibility": "high",
+      "depth": "principle",
+      "_round": 3
+    },
+    {
+      "title": "GDPR-Compliant AI Coding Tools: Enterprise Comparison",
+      "url": "https://www.augmentcode.com/tools/gdpr-compliant-ai-coding-tools-enterprise-comp",
+      "content": "Comparison of enterprise AI coding tools with GDPR compliance features. Covers data handling practices, compliance certifications, and privacy architectures of major coding assistants.",
+      "deep_content": "## GDPR Compliance Comparison\nAI coding tools evaluated on:\n- Data processing location and cross-border transfer mechanisms\n- Data retention policies and user control over data\n- Encryption standards (at rest and in transit)\n- Anonymization and pseudonymization capabilities\n- Audit logging and transparency reporting\n- DPA (Data Processing Agreement) availability\n- Sub-processor list and vendor assessment procedures",
+      "score": 0.78,
+      "relevance": "medium",
+      "relevance_note": "Useful comparison but from a vendor perspective, limited independent verification",
+      "source_credibility": "medium",
+      "depth": "surface",
+      "_round": 3
+    },
+    {
+      "title": "Correlating Automated and Human Evaluation of Code",
+      "url": "https://xin-xia.github.io/publication/tosem218.pdf",
+      "content": "Academic paper on correlating automated metrics with human evaluation for code generation quality. Study on how pass@k and other automated metrics relate to human developer assessments.",
+      "deep_content": "## Research Findings\n- Automated metrics (pass@k, BLEU, CodeBLEU) show moderate correlation with human judgments\n- Correlation varies significantly by programming language and task complexity\n- Functional correctness metrics (pass@k) correlate better with human ratings than surface-form metrics (BLEU)\n- Human evaluation captures dimensions (readability, maintainability, idiom usage) that automated metrics miss",
+      "score": 0.83,
+      "relevance": "high",
+      "relevance_note": "Academic paper directly on evaluation methodology, peer-reviewed, provides empirical evidence on metric validity",
+      "source_credibility": "high",
+      "depth": "principle",
+      "_round": 4
+    },
+    {
+      "title": "Evaluating LLM-Generated Code: A Benchmark and Developer Study",
+      "url": "https://arxiv.org/html/2605.09059",
+      "content": "arXiv paper (May 2026) evaluating LLM-generated code quality combining benchmark results with developer study. New evaluation framework for LLM code generation quality assessment.",
+      "deep_content": "## Evaluation Framework\n- Combines automated benchmark execution with structured developer feedback\n- Multi-dimensional quality assessment: correctness, efficiency, readability, security\n- Cross-model comparison across GPT-4, Claude, Llama, and other major models\n- Developer study component correlates automated scores with real developer satisfaction",
+      "score": 0.87,
+      "relevance": "high",
+      "relevance_note": "Recent arXiv publication (May 2026), combines benchmark and human evaluation, directly relevant",
+      "source_credibility": "high",
+      "depth": "principle",
+      "_round": 4
+    },
+    {
+      "title": "GitHub Copilot vs Cursor vs Codeium: Best AI Coding Tool 2026",
+      "url": "https://www.openhelm.ai/blog/github-copilot-vs-cursor-vs-codeium",
+      "content": "Comprehensive comparison of GitHub Copilot, Cursor, and Codeium across autocomplete quality, codebase awareness, pricing, and IDE integration. Provides feature comparison matrix with assessment of each tool's data collection and evaluation approaches.",
+      "deep_content": "## Feature Comparison Matrix\n| Feature | GitHub Copilot | Cursor | Codeium |\n|---------|---------------|--------|--------|\n| Autocomplete quality | ★★★★★ (GPT-4) | ★★★★☆ (GPT-4) | ★★★★☆ (proprietary) |\n| Codebase awareness | ★★★☆☆ (open files) | ★★★★★ (vector search) | ★★★☆☆ (open files) |\n| Privacy | Data to GitHub/OpenAI | Data to Cursor servers | Self-hosted option |\n| Pricing | $10-19/month | $20/month | Free-$12/month |\n\n## Key Differentiators\n- 40% of code at startups is now AI-generated\n- Copilot leads in autocomplete accuracy\n- Cursor excels at whole-codebase understanding via vector search\n- Codeium differentiates on privacy with self-hosted option",
+      "score": 0.72,
+      "relevance": "medium",
+      "relevance_note": "Industry comparison blog, useful market positioning data but limited technical depth on data collection",
+      "source_credibility": "medium",
+      "depth": "surface",
+      "_round": 5
+    },
+    {
+      "title": "How to Monitor GitHub Copilot Usage Across Your Engineering Team",
+      "url": "https://jellyfish.co/library/github-copilot-monitoring",
+      "content": "Guide on monitoring GitHub Copilot usage at engineering team level, covering metrics interpretation, dashboard setup, and ROI measurement approaches.",
+      "deep_content": "",
+      "score": 0.60,
+      "relevance": "medium",
+      "relevance_note": "Vendor guide on Copilot monitoring, practical but limited technical architecture details",
+      "source_credibility": "medium",
+      "depth": "surface",
+      "_round": 1
+    },
+    {
+      "title": "The AI Transformation Stack: 10+ Tools Beyond Code Generation",
+      "url": "https://uplevelteam.com/blog/ai-transformation-stack",
+      "content": "Overview of the AI transformation stack for engineering teams, covering tools for code generation, code review, testing, documentation, and project management.",
+      "deep_content": "",
+      "score": 0.50,
+      "relevance": "low",
+      "relevance_note": "General overview, limited specific detail on data collection and metrics extraction",
+      "source_credibility": "medium",
+      "depth": "surface",
+      "_round": 2
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+2026-06-17 09:19:56 | INFO    | wflow.server             | logging.py:89 | Logging initialized — directory: D:\AI\DeepResearchAI\logs
+2026-06-17 09:19:56 | INFO    | wflow.server             | main.py:46 | WFlow server starting...
+2026-06-17 09:19:56 | INFO    | wflow.server             | main.py:50 | Database initialized
+2026-06-17 09:19:56 | INFO    | wflow.server             | main.py:73 | Adapters initialized: ClaudeCLI, OpenCodeCLI, ScriptRunner
+2026-06-17 09:19:56 | INFO    | wflow.server             | main.py:80 | Project .wflow directory detected: D:\AI\DeepResearchAI\.wflow
+2026-06-17 09:19:56 | INFO    | wflow.server             | main.py:90 | Cron scheduler started — restored enabled jobs

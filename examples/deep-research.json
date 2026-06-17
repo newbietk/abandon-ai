@@ -1,0 +1,222 @@
+{
+  "name": "deep-research",
+  "version": "3.0",
+  "description": "深度研究工作流：关键词拆分 → 三维并行研究(学术/行业/实践) → 各自人工审核 → 汇聚门判定 → 综合报告输出。任一维度不通过则回路到该维度重新研究。",
+  "config": {
+    "max_retries": 3,
+    "retry_delay_seconds": 30,
+    "timeout_seconds": 7200
+  },
+  "nodes": [
+    {
+      "id": "keyword_splitter",
+      "name": "关键词拆分",
+      "type": "claude",
+      "prompt": "你是一个资深研究策略专家。收到一个研究主题后，请采用 `skill:keyword_splitter` 从三个维度进行关键词拆分，确保后续搜索能全方位覆盖该主题。",
+      "tools": {
+        "allowed": ["Read", "Grep"],
+        "disallowed": ["Write", "Edit", "Bash", "WebSearch", "WebFetch"]
+      },
+      "model": "deepseek-v4-flash",
+      "output": {
+        "type": "object",
+        "properties": {
+          "topic": { "type": "string" },
+          "dimensions": {
+            "type": "object",
+            "properties": {
+              "academic": {
+                "type": "object",
+                "properties": {
+                  "label": { "type": "string" },
+                  "keywords": { "type": "array", "items": { "type": "object", "properties": { "query": {"type":"string"}, "goal": {"type":"string"} } } },
+                  "summary": { "type": "string" }
+                },
+                "required": ["label", "keywords", "summary"]
+              },
+              "industry": {
+                "type": "object",
+                "properties": {
+                  "label": { "type": "string" },
+                  "keywords": { "type": "array", "items": { "type": "object", "properties": { "query": {"type":"string"}, "goal": {"type":"string"} } } },
+                  "summary": { "type": "string" }
+                },
+                "required": ["label", "keywords", "summary"]
+              },
+              "practice": {
+                "type": "object",
+                "properties": {
+                  "label": { "type": "string" },
+                  "keywords": { "type": "array", "items": { "type": "object", "properties": { "query": {"type":"string"}, "goal": {"type":"string"} } } },
+                  "summary": { "type": "string" }
+                },
+                "required": ["label", "keywords", "summary"]
+              }
+            },
+            "required": ["academic", "industry", "practice"]
+          }
+        },
+        "required": ["topic", "dimensions"]
+      },
+      "retry": { "max_retries": 2, "retry_delay_seconds": 30, "timeout_seconds": 300 }
+    },
+    {
+      "id": "academic_research",
+      "name": "学术维度研究",
+      "type": "claude",
+      "prompt": "你是一个学术研究专家。请按学术维度进行深度研究并生成报告。请基于上游节点输出的 academic 维度关键词，采用 `skill:academic_research` 进行检索和分析。",
+      "tools": {
+        "allowed": ["Read", "Write", "Edit", "Bash", "WebFetch", "Grep"],
+        "disallowed": ["WebSearch"]
+      },
+      "model": "deepseek-v4-flash",
+      "output": {
+        "type": "object",
+        "properties": {
+          "report_path": { "type": "string", "description": "学术报告文件路径" },
+          "report_summary": { "type": "string", "description": "报告摘要" },
+          "key_findings": { "type": "array", "items": { "type": "string" }, "description": "3-5条核心发现" },
+          "paper_count": { "type": "number", "description": "收录论文数" }
+        },
+        "required": ["report_path", "report_summary", "key_findings"]
+      },
+      "retry": { "max_retries": 1, "retry_delay_seconds": 60, "timeout_seconds": 1200 }
+    },
+    {
+      "id": "industry_research",
+      "name": "行业维度研究",
+      "type": "claude",
+      "prompt": "你是一个行业研究专家。请按行业维度进行深度研究并生成报告。请基于上游节点输出的 industry 维度关键词，采用 `skill:industry_research` 进行检索和分析。",
+      "tools": {
+        "allowed": ["Read", "Write", "Edit", "Bash", "WebFetch", "Grep"],
+        "disallowed": ["WebSearch"]
+      },
+      "model": "deepseek-v4-flash",
+      "output": {
+        "type": "object",
+        "properties": {
+          "report_path": { "type": "string", "description": "行业报告文件路径" },
+          "report_summary": { "type": "string", "description": "报告摘要" },
+          "key_findings": { "type": "array", "items": { "type": "string" }, "description": "3-5条关键洞察" },
+          "source_count": { "type": "number", "description": "收录来源数" }
+        },
+        "required": ["report_path", "report_summary", "key_findings"]
+      },
+      "retry": { "max_retries": 1, "retry_delay_seconds": 60, "timeout_seconds": 1200 }
+    },
+    {
+      "id": "practical_research",
+      "name": "实践维度研究",
+      "type": "claude",
+      "prompt": "你是一个实践技术研究专家。请按实践维度进行深度研究并生成报告。请基于上游节点输出的 practice 维度关键词，采用 `skill:practice_research` 进行检索和分析。",
+      "tools": {
+        "allowed": ["Read", "Write", "Edit", "Bash", "WebFetch", "Grep"],
+        "disallowed": ["WebSearch"]
+      },
+      "model": "deepseek-v4-flash",
+      "output": {
+        "type": "object",
+        "properties": {
+          "report_path": { "type": "string", "description": "实践报告文件路径" },
+          "report_summary": { "type": "string", "description": "报告摘要" },
+          "key_findings": { "type": "array", "items": { "type": "string" }, "description": "3-5条核心发现" },
+          "tool_count": { "type": "number", "description": "收录工具/项目数" }
+        },
+        "required": ["report_path", "report_summary", "key_findings"]
+      },
+      "retry": { "max_retries": 1, "retry_delay_seconds": 60, "timeout_seconds": 1200 }
+    },
+    {
+      "id": "review_academic",
+      "name": "学术报告审核",
+      "type": "human_review",
+      "prompt": "请审核「学术研究报告」的质量：\n\n研究主题: {{ inputs.topic }}\n报告路径: {{ nodes.academic_research.output.report_path }}\n报告摘要: {{ nodes.academic_research.output.report_summary }}\n核心发现: {{ nodes.academic_research.output.key_findings }}\n\n审核维度：\n1. 检索是否充分（是否覆盖了所有关键学术方向）\n2. 论文筛选是否准确（相关度、时效性）\n3. 分析是否深入（方法论对比、流派梳理）\n4. 报告是否完整（cover所有要求章节）\n\n请决定: approved=true 通过审核 | approved=false 驳回并提供具体反馈",
+      "output": {
+        "type": "object",
+        "properties": {
+          "approved": { "type": "boolean" },
+          "feedback": { "type": "string", "description": "不通过时必须提供具体改进方向" }
+        },
+        "required": ["approved", "feedback"]
+      }
+    },
+    {
+      "id": "review_industry",
+      "name": "行业报告审核",
+      "type": "human_review",
+      "prompt": "请审核「行业研究报告」的质量：\n\n研究主题: {{ inputs.topic }}\n报告路径: {{ nodes.industry_research.output.report_path }}\n报告摘要: {{ nodes.industry_research.output.report_summary }}\n核心洞察: {{ nodes.industry_research.output.key_findings }}\n\n审核维度：\n1. 市场信息是否充分（规模、增长率、参与方）\n2. 企业案例是否具体（有实际方案和效果）\n3. 竞争分析是否客观\n4. 趋势研判是否有据\n\n请决定: approved=true 通过审核 | approved=false 驳回并提供具体反馈",
+      "output": {
+        "type": "object",
+        "properties": {
+          "approved": { "type": "boolean" },
+          "feedback": { "type": "string", "description": "不通过时必须提供具体改进方向" }
+        },
+        "required": ["approved", "feedback"]
+      }
+    },
+    {
+      "id": "review_practical",
+      "name": "实践报告审核",
+      "type": "human_review",
+      "prompt": "请审核「实践研究报告」的质量：\n\n研究主题: {{ inputs.topic }}\n报告路径: {{ nodes.practical_research.output.report_path }}\n报告摘要: {{ nodes.practical_research.output.report_summary }}\n核心发现: {{ nodes.practical_research.output.key_findings }}\n\n审核维度：\n1. 工具发现是否全面（主流方案是否收录）\n2. 教程资源是否实用（可操作性强）\n3. 选型建议是否具体（有对比依据）\n4. 上手路线是否可行\n\n请决定: approved=true 通过审核 | approved=false 驳回并提供具体反馈",
+      "output": {
+        "type": "object",
+        "properties": {
+          "approved": { "type": "boolean" },
+          "feedback": { "type": "string", "description": "不通过时必须提供具体改进方向" }
+        },
+        "required": ["approved", "feedback"]
+      }
+    },
+    {
+      "id": "synthesize",
+      "name": "综合归纳报告",
+      "type": "claude",
+      "prompt": "你是一个资深技术报告总结专家。三个维度的研究报告已全部通过审核，请采用 `skill:synthesize` 将所有研究成果归纳为一份综合报告。输出语言: {{ inputs.language }}。",
+      "tools": {
+        "allowed": ["Read", "Write", "Edit", "Bash", "Grep"],
+        "disallowed": ["WebSearch", "WebFetch"]
+      },
+      "model": "deepseek-v4-pro",
+      "output": {
+        "type": "object",
+        "properties": {
+          "report_path": { "type": "string", "description": "综合报告文件路径" },
+          "summary": { "type": "string", "description": "综合报告执行摘要" },
+          "word_count": { "type": "number", "description": "报告字数" }
+        },
+        "required": ["report_path", "summary"]
+      },
+      "retry": { "max_retries": 3, "retry_delay_seconds": 30, "timeout_seconds": 900 }
+    }
+  ],
+  "edges": [
+    { "id": "e1",  "from": "keyword_splitter",   "to": "academic_research" },
+    { "id": "e2",  "from": "keyword_splitter",   "to": "industry_research" },
+    { "id": "e3",  "from": "keyword_splitter",   "to": "practical_research" },
+    { "id": "e4",  "from": "academic_research",  "to": "review_academic" },
+    { "id": "e5",  "from": "industry_research",  "to": "review_industry" },
+    { "id": "e6",  "from": "practical_research", "to": "review_practical" },
+    { "id": "e7",  "from": "review_academic",    "to": "academic_research", "condition": "{{ nodes.review_academic.output.approved }} == false" },
+    { "id": "e8",  "from": "review_industry",    "to": "industry_research", "condition": "{{ nodes.review_industry.output.approved }} == false" },
+    { "id": "e9",  "from": "review_practical",   "to": "practical_research", "condition": "{{ nodes.review_practical.output.approved }} == false" },
+    { "id": "e10", "from": "review_academic", "to": "synthesize",  "condition": "{{ nodes.review_academic.output.approved }} == true" },
+    { "id": "e11", "from": "review_industry", "to": "synthesize",  "condition": "{{ nodes.review_industry.output.approved }} == true" },
+    { "id": "e12", "from": "review_practical", "to": "synthesize", "condition": "{{ nodes.review_practical.output.approved }} == true" },
+    { "id": "e14", "from": "synthesize",  "to": null }
+  ],
+  "inputs": {
+    "topic": {
+      "type": "string",
+      "required": true,
+      "description": "需要深度研究的泛化主题，例如'大语言模型在代码审查中的应用'"
+    },
+    "language": {
+      "type": "string",
+      "required": false,
+      "default": "zh",
+      "enum": ["zh", "en"],
+      "description": "输出报告语言：zh(中文) / en(英文)"
+    }
+  }
+}

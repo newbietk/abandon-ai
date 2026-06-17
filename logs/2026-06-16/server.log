@@ -1,0 +1,26 @@
+2026-06-16 15:36:10 | INFO    | wflow.server             | logging.py:89 | Logging initialized — directory: D:\AI\DeepResearchAI\logs
+2026-06-16 15:36:10 | INFO    | wflow.server             | main.py:46 | WFlow server starting...
+2026-06-16 15:36:10 | INFO    | wflow.server             | main.py:50 | Database initialized
+2026-06-16 15:36:10 | INFO    | wflow.server             | main.py:73 | Adapters initialized: ClaudeCLI, OpenCodeCLI, ScriptRunner
+2026-06-16 15:36:10 | INFO    | wflow.server             | main.py:80 | Project .wflow directory detected: D:\AI\DeepResearchAI\.wflow
+2026-06-16 15:36:10 | INFO    | wflow.server             | main.py:90 | Cron scheduler started — restored enabled jobs
+2026-06-16 15:36:30 | INFO    | wflow.server             | workflows.py:33 | Workflow created: 5b43c9b4 name='deep-research' nodes=9
+2026-06-16 16:23:02 | INFO    | wflow.server             | main.py:100 | WFlow server shutting down...
+2026-06-16 16:26:41 | INFO    | wflow.server             | logging.py:89 | Logging initialized — directory: D:\AI\DeepResearchAI\logs
+2026-06-16 16:26:41 | INFO    | wflow.server             | main.py:46 | WFlow server starting...
+2026-06-16 16:26:41 | INFO    | wflow.server             | main.py:50 | Database initialized
+2026-06-16 16:26:41 | INFO    | wflow.server             | main.py:73 | Adapters initialized: ClaudeCLI, OpenCodeCLI, ScriptRunner
+2026-06-16 16:26:41 | INFO    | wflow.server             | main.py:80 | Project .wflow directory detected: D:\AI\DeepResearchAI\.wflow
+2026-06-16 16:26:41 | INFO    | wflow.server             | main.py:90 | Cron scheduler started — restored enabled jobs
+2026-06-16 16:28:29 | INFO    | wflow.server             | workflows.py:33 | Workflow created: 7fe197a2 name='deep-research-1' nodes=9
+2026-06-16 19:30:07 | INFO    | wflow.server             | workflows.py:33 | Workflow created: d0c8acc8 name='deep-research-2' nodes=8
+2026-06-16 19:30:07 | INFO    | wflow.server             | workflows.py:33 | Workflow created: cf43db34 name='deep-research-2' nodes=8
+2026-06-16 19:38:44 | INFO    | wflow.server             | main.py:100 | WFlow server shutting down...
+2026-06-16 19:39:36 | INFO    | wflow.server             | logging.py:89 | Logging initialized — directory: D:\AI\DeepResearchAI\logs
+2026-06-16 19:39:36 | INFO    | wflow.server             | main.py:46 | WFlow server starting...
+2026-06-16 19:39:36 | INFO    | wflow.server             | main.py:50 | Database initialized
+2026-06-16 19:39:36 | INFO    | wflow.server             | main.py:73 | Adapters initialized: ClaudeCLI, OpenCodeCLI, ScriptRunner
+2026-06-16 19:39:36 | INFO    | wflow.server             | main.py:80 | Project .wflow directory detected: D:\AI\DeepResearchAI\.wflow
+2026-06-16 19:39:36 | INFO    | wflow.server             | main.py:90 | Cron scheduler started — restored enabled jobs
+2026-06-16 20:05:18 | INFO    | wflow.server             | workflows.py:33 | Workflow created: 49916b8e name='deep-research-v1.0' nodes=8
+2026-06-17 09:19:33 | INFO    | wflow.server             | main.py:100 | WFlow server shutting down...
