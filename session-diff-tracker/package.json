@@ -1,0 +1,20 @@
+{
+  "name": "session-diff-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "OpenCode native plugin for session-level git diff tracking with HTML visualization",
+  "main": "index.mjs",
+  "files": [
+    "index.mjs",
+    "git-collector.mjs",
+    "jsonl-writer.mjs",
+    "checkpoint.mjs",
+    "generate-viewer.mjs"
+  ],
+  "peerDependencies": {
+    "@opencode-ai/plugin": ">=1.17.0"
+  },
+  "keywords": ["opencode", "plugin", "session", "diff", "git", "tracking"],
+  "license": "MIT"
+}

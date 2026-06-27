@@ -1,0 +1,13 @@
+{
+  "current_session_id": "ses_0f7f5a63fffeybbb7i32QFr4q6",
+  "previous_session_id": "ses_0f7f6d97cffePwr9V0x9xvNgGD",
+  "baseline_ref": "origin/main",
+  "baseline_commit": "5d4dd40eb2f5288c92966281fb0f1fe8ebcdfb4c",
+  "pending_files": {},
+  "pending_tools": [],
+  "repos_seen": [
+    "D:/AI/MyTest/abandon-ai"
+  ],
+  "sequence": 2,
+  "last_checkpoint_ts": "2026-06-27T07:51:48.717Z"
+}
